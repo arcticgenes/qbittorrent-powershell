@@ -105,7 +105,7 @@ function ConvertFrom-Timestamp(
     if ($Timestamp -eq -1 -or $Timestamp -eq [Uint32]::MaxValue) {
         [DateTime]::MinValue
     } else {
-        (Get-Date "1970-01-01T00:00:00").AddSeconds($Timestamp)
+        [TimeZone]::CurrentTimeZone.ToLocalTime((Get-Date "1970-01-01T00:00:00").AddSeconds($Timestamp))
     }
 }
 
